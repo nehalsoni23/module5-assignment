@@ -20,9 +20,9 @@ function SignUpController(MenuService) {
 
     var menu_number = signUpCtrl.user.favDish;
     if(menu_number) {
-        MenuService.getMenuItems(menu_number.toUpperCase()).then(function(response){
-          if(response.menu_items.length){
-            signUpCtrl.user.menu_items = response.menu_items;
+        MenuService.getFavouriteItem(menu_number).then(function(response){
+          if(response){
+            signUpCtrl.user.menu_item = response;
             signUpCtrl.menuCheckFlag = true;
           } else {
             signUpCtrl.menuCheckFlag = false;

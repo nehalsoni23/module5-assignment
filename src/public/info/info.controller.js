@@ -4,13 +4,14 @@
 angular.module('public')
 .controller('MyInfoController', MyInfoController);
 
-MyInfoController.$inject = ['info'];
-function MyInfoController(info) {
+MyInfoController.$inject = ['info', 'ApiPath'];
+function MyInfoController(info, ApiPath) {
     var myInfoCtrl = this;
     if(!info) {
-        myInfoCtrl.errorMessage = "Please sign up first to persist your information";
+        myInfoCtrl.errorMessage = "You have not signed up yet ";
     } else {
-        myInfoCtrl.info = info;   
+        myInfoCtrl.info = info;
+        myInfoCtrl.basePath = ApiPath;
     }
 };
 

@@ -29,6 +29,14 @@ function MenuService($http, ApiPath) {
     });
   };
 
+  service.getFavouriteItem = function(favDish) {
+    return $http.get(ApiPath + '/menu_items/' + favDish + '.json').then(function(response){
+      return response.data;
+    }, function(error){
+      return false;
+    });
+  }
+
   service.saveData = function(userData) {
     service.data = userData;
   };
