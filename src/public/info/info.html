@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="alert alert-info" ng-if="myInfoCtrl.errorMessage">{{myInfoCtrl.errorMessage}} 
+        <a ui-sref="public.sign-up">
+        <kbd> Sign Up Now!</kbd></a>
+    </div>
+    <div ng-if="!myInfoCtrl.errorMessage">
+        <h2>Registered Information</h2>
+        <div class="alert alert-warning col-md-12" ng-if="!myInfoCtrl.errorMessage">
+            <span>First Name : {{myInfoCtrl.info.firstName}}</span><br/><hr>
+            <span>Last Name : {{myInfoCtrl.info.lastName}}</span><br/><hr>
+            <span>Email ID : {{myInfoCtrl.info.email}}</span><br/><hr>
+            <span ng-if="myInfoCtrl.info.phone">Contact No : {{myInfoCtrl.info.phone}}</span>
+            <span ng-if="!myInfoCtrl.info.phone">You have not shared your contact detail.</span><br/>
+        </div><br/>
+        <p class="mb-0">Your preferred  menu items are listed below:</p><br/>
+        <menu-item ng-repeat="menuItem in myInfoCtrl.info.menu_items"
+                menu-item="menuItem">
+        </menu-item>
+    </div>
+</div>

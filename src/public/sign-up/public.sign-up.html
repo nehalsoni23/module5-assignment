@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Sign Up Here</h1>
+    <h2>Sign Up here to subscribe for Newsletter</h2>
   <fieldset>
     <form name='regForm' novalidate>
     <div class="row">
@@ -8,10 +8,9 @@
         ng-model="signUpCtrl.user.firstName"
         required/>
       <span
-      ng-show="regForm.firstName.$error.required && regForm.firstName.$touched && regForm.firstName.$invalid">
+      ng-if="regForm.firstName.$error.required && regForm.firstName.$touched && regForm.firstName.$invalid">
       First Name is required
       </span>
-
     </div>
     <div class="form-group col-md-6">
     <input type="text" name="lastName" placeholder="Last Name" class="form-control"
@@ -24,10 +23,10 @@
     </div></div>
     <div class="row">
     <div class="form-group col-md-6">
-      <input type="email" name="email" placeholder="Email" class="form-control"
+      <input type="email" name="email" placeholder="Valid Email Format: handle@domain" class="form-control"
       ng-model="signUpCtrl.user.email"
-      required>
-      <span ng-if="regForm.lastName.$error.required && regForm.email.$invalid && regForm.email.$touched">
+      required/>
+      <span ng-if="regForm.email.$error.required && regForm.email.$touched && regForm.email.$invalid">
         Must be a valid email address: handle@domain format
       </span>
     </div>
@@ -48,25 +47,24 @@
         </span>
     </div>
     <div class="form-group col-md-6">
-    <button ng-disabled="regForm.$invalid && signUpCtrl.menuCheckFlag" class="btn btn-default"
+    <button ng-disabled="regForm.$invalid || !signUpCtrl.menuCheckFlag" class="btn btn-default"
           ng-click="signUpCtrl.submit()">Submit</button></div>
       </div>
 </form>
 </fieldset>
 <div class="alert alert-danger">Bonus point is added please click outside favourite dish field to trigger it</div>
 </div>
-<span>{{regForm.$invalid}} - {{signUpCtrl.menuCheckFlag}}</span>
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog" tabindex="-1">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Error</h4>
+        <h4 class="modal-title">Result Message</h4>
       </div>
       <div class="modal-body">
-        <p>Item number specified is not valid. Please enter valid item number.</p>
+        <p>{{signUpCtrl.resultMessage}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -75,8 +73,3 @@
 
   </div>
 </div>
-    <!-- <div id="info" ng-if="reg.completed">
-      Username: {{ reg.user.username}} <br>
-      Email: {{ reg.user.email}} <br>
-      Phone: {{ reg.user.phone }}
-    </div> -->
